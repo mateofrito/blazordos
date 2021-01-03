@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager NavManager;
 @*<h1>Hello, world!</h1>
 
     Welcome to your new app.
@@ -28,15 +29,16 @@
 @code{
     private IList<PriorInputs> priorInputs = new List<PriorInputs>();
     private string priorPrompt;
+    
 
-    private void AddPriorPrompt()
-    {
-        if (!string.IsNullOrWhiteSpace(priorPrompt))
-        {
-            priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
-            priorPrompt = string.Empty;
-        }
-    }
+    //private void AddPriorPrompt()
+    //{
+    //    if (!string.IsNullOrWhiteSpace(priorPrompt))
+    //    {
+    //        priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
+    //        priorPrompt = string.Empty;
+    //    }
+    //}
 
     public void Enter(KeyboardEventArgs e)
     {
@@ -44,8 +46,15 @@
         {
             if (!string.IsNullOrWhiteSpace(priorPrompt))
             {
-                priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
-                priorPrompt = string.Empty;
+                if (priorPrompt.ToLower() == "win")
+                {
+                    NavManager.NavigateTo("/win95redirect");
+                }
+                else
+                {
+                    priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
+                    priorPrompt = string.Empty;
+                }
             }
         }
     }

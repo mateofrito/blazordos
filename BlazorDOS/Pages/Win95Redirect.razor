@@ -1,0 +1,42 @@
+﻿@page "/win95redirect";
+@inject NavigationManager NavManager;
+
+
+
+<a href="./index_main.html"><img class="win-load" id="win95" src="assets/images/win95loading.gif"></a>
+
+@code {
+
+
+
+    public void autoRedirect()
+    {
+        NavManager.NavigateTo("http://www.mattfry.io/index_main.html");
+    }
+
+    private async Task RedirectToPortfolio()
+    {
+
+        await Task.Delay(5 * 1000);
+        NavManager.NavigateTo("http://www.mattfry.io/index_main.html");
+
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        // execute conditionally for loading data, otherwise this will load
+        // every time the page refreshes
+        //System.Timers.Timer aTimer = new System.Timers.Timer(5000);
+
+
+
+        if (firstRender)
+        {
+            RedirectToPortfolio();
+            //NavManager.NavigateTo("http://www.mattfry.io/index_main.html");
+        }
+    }
+
+
+
+}
