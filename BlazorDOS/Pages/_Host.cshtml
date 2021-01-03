@@ -8,23 +8,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
+    <title>Matt Fry Dot IO </title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+    <meta author="Matt Fry" />
+    <meta property="og:image" content="assets/preview.png" />
+
+    <meta property="og:url" content="www.mattfry.io" />
+    <meta property="og:title" content="Command Prompt - Matt Fry.IO" />
+    <meta property="og:description" content="The personal portfolio page for me, Matt Fry, a Blue Prism Certified RPA Developer,
+    Full Stack Web Developer with experience in both Java and .NET.  Sometimes I like to pretend I'm Warren Buffet and make wild trades on Robinhood." />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlazorDOS</title>
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/win95.css">
+    <link rel="stylesheet" type="text/css" href="css/dos.css">
 </head>
-<body>
+<body class="load-container" id="dos-container">
     <app>
         <component type="typeof(App)" render-mode="ServerPrerendered" />
     </app>
 
     <div id="blazor-error-ui">
-        <environment include="Staging,Production">
+        <environment include="Staging,Production" class="dos-output">
             An error has occurred. This application may no longer respond until reloaded.
         </environment>
-        <environment include="Development">
+        <environment include="Development" class="dos-output">
             An unhandled exception has occurred. See browser dev tools for details.
         </environment>
         <a href="" class="reload">Reload</a>
