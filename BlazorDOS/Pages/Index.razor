@@ -19,6 +19,7 @@
     <div class="dos-prompt-container">
         <p class="prompt-label">C:></p>
         <p class="dos-output">@priorInput.PriorInput</p>
+        
     </div>
 }
 <div class="dos-prompt-container">
@@ -29,7 +30,8 @@
 @code{
     private IList<PriorInputs> priorInputs = new List<PriorInputs>();
     private string priorPrompt;
-    
+    private string dosResponse;
+
 
     //private void AddPriorPrompt()
     //{
@@ -50,6 +52,12 @@
                 {
                     NavManager.NavigateTo("/win95redirect");
                 }
+                else if (priorPrompt.ToLower() == "help")
+                {
+                    HelpResponse();
+                    priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
+                    priorPrompt = string.Empty;
+                }
                 else
                 {
                     priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
@@ -57,6 +65,12 @@
                 }
             }
         }
+    }
+
+    public string HelpResponse()
+    {
+        dosResponse = "< p class='dos-output'>This portion of the page is a work in progress!  Just type 'win' at the prompt below.</p>";
+        return dosResponse;
     }
 
 }

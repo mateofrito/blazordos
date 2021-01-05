@@ -5,10 +5,14 @@
     
 }
 
+.dos-body{
+    background-color: black;
+}
 .load-container{
     text-align: center;
     vertical-align: middle;
     background-color: black;
+    width: 100%;
 }
 .win-load{
     width: 100%;
