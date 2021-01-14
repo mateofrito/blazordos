@@ -1,6 +1,7 @@
 ﻿@page "/"
 @inject NavigationManager NavManager;
 @inject BlazorDOS.SendSMS SendSMS;
+@inject BlazorDOS.Commands.BaseCommands BaseCommand;
 @*@inject BlazorDOS.Commands.BaseCommands BaseCommands;*@
 @*@inject Microsoft.AspNetCore.Mvc.Rendering.TagBuilder TagBuilder;*@
 
@@ -30,7 +31,8 @@
     {
         case "help":
             {
-                <HelpComponent></HelpComponent>
+                
+               <HelpComponent></HelpComponent> 
             }
             break;
         case "sms":
