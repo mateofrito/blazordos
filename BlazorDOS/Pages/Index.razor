@@ -5,11 +5,6 @@
 @*@inject BlazorDOS.Commands.BaseCommands BaseCommands;*@
 @*@inject Microsoft.AspNetCore.Mvc.Rendering.TagBuilder TagBuilder;*@
 
-@*<h1>Hello, world!</h1>
-
-    Welcome to your new app.
-
-    <SurveyPrompt Title="How is Blazor working for you?" />*@
 
 <div class="dos-prompt-container">
     <p class="dos-output">Matt Fry.IO [Version 2.0]</p>
@@ -19,84 +14,6 @@
 
 </div>
 
-@foreach (var priorInput in priorInputs)
-{
-    <div class="dos-prompt-container">
-        <p class="prompt-label">C:></p>
-        <p class="dos-output">@priorInput.PriorInput</p>
-    </div>
+<CommandPrompt></CommandPrompt>
 
 
-    @switch (priorInput.PriorInput.ToString())
-    {
-        case "help":
-            {
-                
-               <HelpComponent></HelpComponent> 
-            }
-            break;
-        case "sms":
-            {
-                <div class="dos-prompt-container">
-                    <p class="dos-output">Text Message Sent.</p>
-                </div>
-            }
-            break;
-        default:
-            {
-
-            }
-            break;
-    }
-
-}
-
-<div class="dos-prompt-container">
-    <p class="prompt-label">C:></p>
-    <input type="text" id="dosPrompt" class="dos-prompt-input" @bind="priorPrompt" @onkeydown="@Enter" autofocus />
-</div>
-
-@code{
-    private IList<PriorInputs> priorInputs = new List<PriorInputs>();
-    private string priorPrompt;
-    private string dosResponse;
-    private string textMessage;
-
-
-    //private void AddPriorPrompt()
-    //{
-    //    if (!string.IsNullOrWhiteSpace(priorPrompt))
-    //    {
-    //        priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
-    //        priorPrompt = string.Empty;
-    //    }
-    //}
-
-    public void Enter(KeyboardEventArgs e)
-    {
-        if (e.Code == "Enter" || e.Code == "NumpadEnter")
-        {
-            if (!string.IsNullOrWhiteSpace(priorPrompt))
-            {
-                if (priorPrompt.ToLower() == "win")
-                {
-                    NavManager.NavigateTo("/win95redirect");
-                }
-                else if (priorPrompt.ToLower() == "sms")
-                {
-                    SendSMS.TextMsg("Hey Drew!  We heard about your small penis, so we are offering 50% off on ULTRA MAX PENIS PILLS 5000 XL! Regular Price $39.99 ");
-                    priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
-                    priorPrompt = string.Empty;
-                }
-                else
-                {
-                    priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
-                    priorPrompt = string.Empty;
-                }
-            }
-        }
-    }
-
-
-
-}

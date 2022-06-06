@@ -1,0 +1,88 @@
+﻿@inject NavigationManager NavManager;
+@inject BlazorDOS.SendSMS SendSMS;
+@inject BlazorDOS.Commands.BaseCommands BaseCommand;
+
+
+
+@foreach (var priorInput in priorInputs)
+{
+    <div class="dos-prompt-container">
+        <p class="prompt-label">C:></p>
+        <p class="dos-output">@priorInput.PriorInput</p>
+    </div>
+
+
+    @switch (priorInput.PriorInput.ToString().ToLower())
+    {
+        case "help":
+            {
+
+                <HelpComponent></HelpComponent>
+                
+                <WebConsoleWriteLine WebOutput=@test></WebConsoleWriteLine>
+
+
+            }
+            break;
+        case "sms":
+            { 
+                <div class="dos-prompt-container">
+                    <p class="dos-output">Text Message Status:  @twilioResponse</p>
+                </div>
+                string returnOutput = twilioResponse;
+                <WebConsoleWriteLine WebOutput=returnOutput></WebConsoleWriteLine>
+            }
+            break;
+        default:
+            {
+
+            }
+            break;
+    }
+
+}
+
+<div class="dos-prompt-container" @onkeydown="@Enter">
+    <p class="prompt-label">C:></p>
+    <input type="text" id="dosPrompt" class="dos-prompt-input" @bind="priorPrompt" @onkeydown="@Enter" autofocus />
+</div>
+
+@code{
+    private IList<PriorInputs> priorInputs = new List<PriorInputs>();
+    private string priorPrompt;
+    private string dosResponse;
+    private string textMessage;
+    private string twilioResponse;
+
+    string test = "derps";
+
+
+    public void Enter(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            if (!string.IsNullOrWhiteSpace(priorPrompt))
+            {
+                if (priorPrompt.ToLower() == "win")
+                {
+                    NavManager.NavigateTo("/win95redirect");
+                }
+                else if (priorPrompt.ToLower() == "sms")
+                {
+                    twilioResponse = SendSMS.TextMsg("TESTY MCTESTERSON");
+                    priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
+                    priorPrompt = string.Empty;
+                }
+                else
+                {
+                    priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
+                    priorPrompt = string.Empty;
+                }
+
+            }
+        }
+    }
+
+
+
+}

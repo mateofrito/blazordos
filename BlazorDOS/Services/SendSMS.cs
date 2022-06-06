@@ -12,7 +12,7 @@ namespace BlazorDOS
     {
         public string textMessage { get; set; }
 
-        public void TextMsg(string textMessage)
+        public string TextMsg(string textMessage)
         {
             // Find your Account Sid and Token at twilio.com/console
             // and set the environment variables. See http://twil.io/secure
@@ -20,6 +20,10 @@ namespace BlazorDOS
             string authToken = System.Environment.GetEnvironmentVariable("TWILIO_AUTH_TOKEN");
             string twilioNumber = System.Environment.GetEnvironmentVariable("TWILIO_NUMBER");
             string fryNumber = System.Environment.GetEnvironmentVariable("FRY_CELL_NUMBER");
+            string drewNumber = "+13308012990";
+            string donohoeNumber = "+19372156311";
+            string messageStatus;
+            string messageID;
             TwilioClient.Init(accountSid, authToken);
 
             var message = MessageResource.Create(
@@ -27,6 +31,14 @@ namespace BlazorDOS
                 from: new Twilio.Types.PhoneNumber(twilioNumber),
                 to: new Twilio.Types.PhoneNumber(fryNumber)
             );
+
+           
+     
+
+            
+
+
+            return message.Status.ToString();
         }
     }
 }
