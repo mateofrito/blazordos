@@ -5,6 +5,10 @@
     
 }
 
+td {
+    font-family: 'DOS';
+}
+
 .load-container{
     text-align: center;
     vertical-align: middle;
@@ -23,6 +27,17 @@
     
 }
 
+.dos-table {
+    font-family: 'DOS' !important;
+}
+
+.dos-table-header-row {
+    font-family: 'DOS' !important;
+}
+
+.dos-data-item {
+    font-family: 'DOS' !important;
+}
 .dos-prompt-input{
     display: inline-block;
     border: none;

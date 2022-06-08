@@ -1,6 +1,9 @@
-﻿<div class="dos-prompt-container">
+﻿@*<div class="dos-prompt-container">
     <p class='dos-output'>This portion of the page is a work in progress!  Just type 'win' at the prompt below.</p>
-</div>
-    @code {
+</div>*@
 
-    }
+
+<WebConsoleWriteLine WebOutput=@helpOutput></WebConsoleWriteLine>
+@code {
+    string helpOutput = "This portion of the page is a work in progress!  Just type 'win' at the prompt below.";
+}

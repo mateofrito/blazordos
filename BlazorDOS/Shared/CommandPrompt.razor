@@ -19,23 +19,28 @@
 
                 <HelpComponent></HelpComponent>
                 
-                <WebConsoleWriteLine WebOutput=@test></WebConsoleWriteLine>
+                
 
 
             }
             break;
         case "sms":
             { 
-                <div class="dos-prompt-container">
+                @*<div class="dos-prompt-container">
                     <p class="dos-output">Text Message Status:  @twilioResponse</p>
-                </div>
-                string returnOutput = twilioResponse;
-                <WebConsoleWriteLine WebOutput=returnOutput></WebConsoleWriteLine>
+                </div>*@
+                
+                <WebConsoleWriteLine WebOutput=@twilioResponse></WebConsoleWriteLine>
+            }
+            break;
+        case "table":
+            {
+                <WebConsoleTable></WebConsoleTable>
             }
             break;
         default:
             {
-
+                <WebConsoleWriteLine WebOutput=@unknownCommand(priorInput.PriorInput.ToString())></WebConsoleWriteLine>
             }
             break;
     }
@@ -53,9 +58,12 @@
     private string dosResponse;
     private string textMessage;
     private string twilioResponse;
+    private string unknownCommandResponse;
 
-    string test = "derps";
-
+    private string unknownCommand(string priorPrompt)
+    {
+        return unknownCommandResponse = "'" + priorPrompt + "' is not recognized as an internal or external command, operable program or batch file.";
+    }
 
     public void Enter(KeyboardEventArgs e)
     {
@@ -69,7 +77,7 @@
                 }
                 else if (priorPrompt.ToLower() == "sms")
                 {
-                    twilioResponse = SendSMS.TextMsg("TESTY MCTESTERSON");
+                    twilioResponse = "Text message status:  '"+ SendSMS.TextMsg("Blazor Test") + "'";
                     priorInputs.Add(new PriorInputs { PriorInput = priorPrompt });
                     priorPrompt = string.Empty;
                 }

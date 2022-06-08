@@ -32,7 +32,8 @@ Body styles
 
 */
 body {
-    font-family: "Windows 95",'woff','woff2'; 
+    /*font-family: "Windows 95",'woff','woff2';*/
+    font-family: 'DOS';
     background: teal;
     color: white;
     padding-bottom: 28px;
